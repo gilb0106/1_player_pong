@@ -1,7 +1,8 @@
 import sys
 import pygame
-import Player
-import Ball
+
+from Ball import Ball
+from Player import Player
 
 resolution = (400, 300)
 WHITE = (255, 255, 255)
