@@ -19,7 +19,7 @@ class Ball:
     def draw(self, surface):
         pygame.draw.circle(surface, self.color, (int(self.x), int(self.y)), self.rad)
 
-    def update(self):
+    def update(self, player, scoreboard):
         self.x += self.xVel
         self.y += self.yVel
         if (self.x - self.rad < 0):
@@ -29,4 +29,11 @@ class Ball:
             self.xVel *= -1
         if (self.y - self.rad < 0 or self.y + self.rad >= SCREEN_HEIGHT):
             self.yVel *= -1
+        if (self.x + self.rad >= player.x and self.x - self.rad <= player.x + player.width and
+                self.y + self.rad >= player.y and self.y - self.rad <= player.y + player.height):
+            self.xVel *= -1  # Reverse the ball's horizontal velocity
+            scoreboard.incrment_player_score()
 
+    def reset(self):
+        self.x = SCREEN_WIDTH // 2
+        self.y = SCREEN_HEIGHT // 2

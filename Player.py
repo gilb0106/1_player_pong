@@ -27,3 +27,4 @@ class Player:
     def move_down(self):
         if self.y + self.height < SCREEN_HEIGHT:
             self.y += self.speed
+

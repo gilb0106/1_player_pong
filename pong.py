@@ -1,8 +1,10 @@
 import sys
 import pygame
 
+
 from Ball import Ball
 from Player import Player
+from scoreBoard import ScoreBoard
 
 resolution = (400, 300)
 WHITE = (255, 255, 255)
@@ -16,12 +18,14 @@ pygame.display.set_caption("Square Player")
 
 # Create a player object
 player = Player(resolution[0] // 100, resolution[1] // 4, 100, 20, WHITE)
-
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+clock = pygame.time.Clock()
 # Create ball object at the center of the screen
 ball = Ball(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+scoreboard = ScoreBoard(30, WHITE, SCREEN_WIDTH, SCREEN_HEIGHT)
 
-# Set up the screen
-screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+
+
 
 # Game loop
 running = True
@@ -42,7 +46,7 @@ while running:
         ball.xVel *= -1  # Reverse the ball's horizontal velocity
         ball.xVel += 1
 
-    ball.update()
+    ball.update(player, scoreboard)
 
 
 
@@ -51,7 +55,7 @@ while running:
 
     # Draw the player
     player.draw(screen)
-
+    scoreboard.draw(screen)
     # Draw the ball
     ball.draw(screen)
 
