@@ -35,7 +35,7 @@ class Ball:
             if (self.x + self.rad >= player.x and self.x - self.rad <= player.x + player.width and
                     self.y + self.rad >= player.y and self.y - self.rad <= player.y + player.height):
                 self.xVel *= -1  # Reverse the ball's horizontal velocity
-                scoreboard.increment_player_score()
+                scoreboard.incrment_player_score()
         else:
             # Check if it's been 5 seconds since game over
             if pygame.time.get_ticks() - self.game_over_timer >= 5000:
